@@ -76,7 +76,7 @@
             android:layout_marginStart="@dimen/activity_margin_content"
             android:layout_marginTop="@dimen/activity_margin_half"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="4"
             tools:text="Nowadays, user engagement is considered one of the most important metrics for the success of your app"/>
 
     </LinearLayout>

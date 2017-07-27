@@ -1,5 +1,8 @@
 package com.suleiman.pagination.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -12,7 +15,7 @@ import java.util.List;
  * Copyright (c) 2016. Suleiman Ali Shakir. All rights reserved.
  */
 
-public class Result {
+public class Result implements Parcelable {
 
     @SerializedName("poster_path")
     @Expose
@@ -56,6 +59,32 @@ public class Result {
     @SerializedName("vote_average")
     @Expose
     private Double voteAverage;
+
+    public Result(){
+
+    }
+
+    protected Result(Parcel in) {
+        posterPath = in.readString();
+        overview = in.readString();
+        releaseDate = in.readString();
+        originalTitle = in.readString();
+        originalLanguage = in.readString();
+        title = in.readString();
+        backdropPath = in.readString();
+    }
+
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 
     /**
      *
@@ -309,6 +338,21 @@ public class Result {
         this.voteAverage = voteAverage;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(posterPath);
+        dest.writeString(overview);
+        dest.writeString(releaseDate);
+        dest.writeString(originalTitle);
+        dest.writeString(originalLanguage);
+        dest.writeString(title);
+        dest.writeString(backdropPath);
+    }
 }
 
 

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements PaginationAdapter
     private boolean isLoading = false;
     private boolean isLastPage = false;
     // limiting to 5 for this tutorial, since total pages in actual API is very large. Feel free to modify.
-    private int TOTAL_PAGES = 5;
+    private int TOTAL_PAGES = 20;
     private int currentPage = PAGE_START;
 
     private MovieService movieService;
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements PaginationAdapter
      */
     private Call<TopRatedMovies> callTopRatedMoviesApi() {
         return movieService.getTopRatedMovies(
-                getString(R.string.my_api_key),
+                getString(R.string.api_key),
                 "en_US",
                 currentPage
         );

@@ -1,6 +1,7 @@
 package com.suleiman.pagination;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -244,7 +245,7 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     /**
      * Main list's content ViewHolder
      */
-    protected class MovieVH extends RecyclerView.ViewHolder {
+    protected class MovieVH extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mMovieTitle;
         private TextView mMovieDesc;
         private TextView mYear; // displays "year | language"
@@ -259,6 +260,14 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             mYear = (TextView) itemView.findViewById(R.id.movie_year);
             mPosterImg = (ImageView) itemView.findViewById(R.id.movie_poster);
             mProgress = (ProgressBar) itemView.findViewById(R.id.movie_progress);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("result", movieResults.get(getAdapterPosition()));
+            context.startActivity(intent);
         }
     }
 
@@ -289,7 +298,6 @@ public class PaginationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                     showRetry(false, null);
                     mCallback.retryPageLoad();
-
                     break;
             }
         }
